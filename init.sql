@@ -1,0 +1,1 @@
+CREATE USER meal_book;
