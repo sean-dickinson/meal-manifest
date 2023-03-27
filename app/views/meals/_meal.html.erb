@@ -5,13 +5,24 @@
   </p>
 
   <p>
-    <strong>Notes:</strong>
-    <%= meal.notes %>
+    <strong>Tags:</strong>
+    <% meal.tag_list.each do |tag| %>
+      <em> <%= tag %> </em>
+    <% end %>
   </p>
-
+ 
   <p>
     <strong>Source:</strong>
     <%= meal.source %>
   </p>
+ 
+  <% if meal.notes.present? %>
+    <details>
+      <summary>Notes:</summary>
+      <%= meal.notes %>
+    </details>
+  <% end %>
+
+
 
 </div>
