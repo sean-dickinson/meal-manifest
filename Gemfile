@@ -60,6 +60,7 @@ end
 
 gem "paranoia"
 gem "devise"
+gem 'acts-as-taggable-on', '~> 9.0'
 
 group :development, :test do
   gem "capybara"
