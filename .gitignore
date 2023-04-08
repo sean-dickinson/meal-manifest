@@ -31,4 +31,6 @@
 /config/master.key
 
 # Ignore editor related files
-.idea/*
+.idea
+
+.DS_Store
