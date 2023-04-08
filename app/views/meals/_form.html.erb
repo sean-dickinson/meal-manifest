@@ -23,7 +23,7 @@
   
   <div>
     <%= form.label :tags, style: "display: block" %>
-    <%= form.text_field :tag_list %>
+    <%= form.text_field :tag_list, value: meal.tag_list.join(", ") %>
   </div>
   
   <div>

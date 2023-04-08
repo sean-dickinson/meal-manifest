@@ -6,9 +6,13 @@
 
   <p>
     <strong>Tags:</strong>
-    <% meal.tag_list.each do |tag| %>
-      <em> <%= tag %> </em>
-    <% end %>
+    <ul>
+      <% meal.tag_list.each do |tag| %>
+        <li>
+          <em> <%= tag %> </em>
+        </li>
+      <% end %>
+    </ul>
   </p>
  
   <p>
