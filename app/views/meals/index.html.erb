@@ -21,7 +21,7 @@
     <ul>
       <% @meals.each do |meal| %>
         <li>
-          <%= link_to meal.name, meal %>
+          <%= link_to meal.name, meal, data: { 'turbo-frame': "_top"} %>
         </li>
       <% end %>
     </ul>
