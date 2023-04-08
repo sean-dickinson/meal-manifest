@@ -3,7 +3,7 @@ class MealsController < ApplicationController
 
   # GET /meals or /meals.json
   def index
-    @meals = Meal.all
+    @meals = filtered_meals
   end
 
   # GET /meals/1 or /meals/1.json
@@ -67,5 +67,13 @@ class MealsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def meal_params
     params.require(:meal).permit(:name, :notes, :source, :tag_list)
+  end
+
+  def filtered_meals
+    Meal.search(search_query)
+  end
+
+  def search_query
+    @query = params[:query]
   end
 end
