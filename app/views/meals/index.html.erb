@@ -1,15 +1,30 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Meals</h1>
+<p>
+  <%= link_to "New meal", new_meal_path %>
+</p>
 
-<div id="meals">
-  <ul>
-    <% @meals.each do |meal| %>
-      <li>
-        <%= link_to meal.name, meal %>
-      </li>
+<%= form_with(url: meals_path, method: :get, data: { turbo_frame: :index}) do |f| %>
+  <%= f.text_field(:query, value: @query, placeholder: "Search") %>
+<% end %>
+
+<h2>List</h2>
+<%= turbo_frame_tag :index do %>
+  <% if @meals.empty? %>
+    <% if @query.present? %>
+      <p>No meals found matching your search for "<%= @query %>"</p>
+    <% else %>
+      <p>No meals yet. <%= link_to "Create one to start!", new_meal_path %></p>
     <% end %>
-  </ul>
-</div>
+  <% else %>
+    <ul>
+      <% @meals.each do |meal| %>
+        <li>
+          <%= link_to meal.name, meal %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% end %>
 
-<%= link_to "New meal", new_meal_path %>
