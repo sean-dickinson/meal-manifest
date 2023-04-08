@@ -1,9 +1,9 @@
 class MealsController < ApplicationController
-  before_action :set_meal, only: %i[ show edit update destroy ]
+  before_action :set_meal, only: %i[show edit update destroy]
 
   # GET /meals or /meals.json
   def index
-    @meals = Meal.all
+    @meals = filtered_meals
   end
 
   # GET /meals/1 or /meals/1.json
@@ -58,13 +58,22 @@ class MealsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meal
-      @meal = Meal.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def meal_params
-      params.require(:meal).permit(:name, :notes, :source)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_meal
+    @meal = Meal.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def meal_params
+    params.require(:meal).permit(:name, :notes, :source, :tag_list)
+  end
+
+  def filtered_meals
+    Meal.search(search_query)
+  end
+
+  def search_query
+    @query = params[:query]
+  end
 end
