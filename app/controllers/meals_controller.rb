@@ -1,10 +1,12 @@
 class MealsController < ApplicationController
+  include Pagy::Backend
+
   before_action :authenticate_user!
   before_action :set_meal, only: %i[show edit update destroy]
 
   # GET /meals or /meals.json
   def index
-    @meals = filtered_meals
+    @pagy, @meals = pagy(filtered_meals)
   end
 
   # GET /meals/1 or /meals/1.json
