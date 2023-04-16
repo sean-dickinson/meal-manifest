@@ -1,4 +1,5 @@
 class MealsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_meal, only: %i[show edit update destroy]
 
   # GET /meals or /meals.json
@@ -21,7 +22,7 @@ class MealsController < ApplicationController
 
   # POST /meals or /meals.json
   def create
-    @meal = Meal.new(meal_params)
+    @meal = current_user.meals.new(meal_params)
 
     respond_to do |format|
       if @meal.save
@@ -61,7 +62,7 @@ class MealsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_meal
-    @meal = Meal.find(params[:id])
+    @meal = current_user.meals.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
@@ -70,7 +71,7 @@ class MealsController < ApplicationController
   end
 
   def filtered_meals
-    Meal.search(search_query)
+    current_user.meals.search(search_query)
   end
 
   def search_query

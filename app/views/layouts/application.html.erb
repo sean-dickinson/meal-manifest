@@ -13,6 +13,12 @@
   </head>
 
   <body>
+  <nav style="display: flex; justify-content: space-between; align-items: center;">
+      <% if user_signed_in? %>
+        <%= link_to 'Meals', root_path %>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
+      <% end %>
+  </nav>
     <%= yield %>
   </body>
 </html>

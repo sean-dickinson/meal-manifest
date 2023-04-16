@@ -1,6 +1,8 @@
 class Meal < ApplicationRecord
   acts_as_taggable_on :tags
 
+  belongs_to :user
+
   class << self
     # @param [String] search_query
     # @return [ActiveRecord::Relation<Meal>]
