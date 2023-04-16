@@ -10,7 +10,7 @@ user = User.create_or_find_by(email: "testuser@example.com", password: "password
 
 100.times do
   meal = user.meals.create(
-    name: Faker::Food.dish,
+    name: Faker::Food.dish
   )
   meal.save
 end
