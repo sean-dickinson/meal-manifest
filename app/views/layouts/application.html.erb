@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>MealBook</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <head>
+  <title>MealBook</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= vite_client_tag %>
-    <%= vite_javascript_tag 'application' %>
+  <%= vite_client_tag %>
+  <%= vite_javascript_tag 'application' %>
 
-  </head>
+    </head>
 
-  <body>
-  <nav style="display: flex; justify-content: space-between; align-items: center;">
-      <% if user_signed_in? %>
-        <%= link_to 'Meals', root_path %>
-        <%= button_to "Sign out", destroy_user_session_path, method: :delete %>
-      <% end %>
-  </nav>
+    <body>
+        <nav class="navbar">
+          <% if user_signed_in? %>
+            <div class="navbar bg-base-100">
+              <div class="flex-1">
+                <%= link_to 'My Meals', root_path, class: "btn btn-ghost text-xl" %>
+              </div>
+            </div>
+            <div class="flex-none">
+              <ul class="menu menu-horizontal px-2">
+                <li class="mx-1">
+                  <%= link_to 'New Meal', new_meal_path, class: "btn" %>
+                </li>
+                <li class="mx-1">
+                  <%= button_to "Sign out", destroy_user_session_path, method: :delete, form_class: "contents", class: "btn btn-ghost" %>
+                </li>
+              </ul>
+            </div>
+          <% end %>
+        </nav>
     <%= yield %>
-  </body>
+    </body>
 </html>
