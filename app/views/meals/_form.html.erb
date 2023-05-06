@@ -11,24 +11,24 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-control">
+    <%= form.label :name, class: "label" %>
+    <%= form.text_field :name, class: "input input-bordered" %>
   </div>
 
-  <div>
-    <%= form.label :source, style: "display: block" %>
-    <%= form.text_field :source %>
+  <div class="form-control">
+    <%= form.label :source, class: "label" %>
+    <%= form.text_field :source, class: "input input-bordered" %>
   </div>
   
-  <div>
-    <%= form.label :tags, style: "display: block" %>
-    <%= form.text_field :tag_list, value: meal.tag_list.join(", ") %>
+  <div class="form-control">
+    <%= form.label :tags, class: "label" %>
+    <%= form.text_field :tag_list, value: meal.tag_list.join(", "), class: "input input-bordered" %>
   </div>
   
-  <div>
-    <%= form.label :notes, style: "display: block" %>
-    <%= form.text_area :notes %>
+  <div class="form-control">
+    <%= form.label :notes, class: "label" %>
+    <%= form.text_area :notes, class: "textarea textarea-bordered" %>
   </div>
 
 
