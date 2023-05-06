@@ -1,0 +1,38 @@
+name: Test
+on:
+  push:
+    branches:
+      - "*"
+
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    services:
+      postgres:
+        image: postgres:13-alpine
+        ports:
+          - 5433:5432
+        options: --health-cmd pg_isready --health-interval 10ms --health-timeout 500ms --health-retries 15
+        env:
+          POSTGRES_USER: meal_book
+          POSTGRES_HOST_AUTH_METHOD: trust
+          POSTGRES_DB: meal_book_test
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Lint
+        run: |
+          bin/standardrb --format progress
+
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+        run: |
+          bin/rails db:test:prepare
+          bin/rails test
