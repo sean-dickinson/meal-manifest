@@ -14,9 +14,9 @@ jobs:
           - 5433:5432
         options: --health-cmd pg_isready --health-interval 10ms --health-timeout 500ms --health-retries 15
         env:
-          POSTGRES_USER: postgres
+          POSTGRES_USER: meal_book
+          POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: meal_book_test
-          POSTGRES_PASSWORD: postgres
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
