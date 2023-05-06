@@ -7,10 +7,15 @@ module.exports = {
         './app/**/*.{js,ts}',
     ],
     theme: {
-        extend: {},
+        container: {
+            padding: '2rem',
+        },
     },
     daisyui: {
         themes: ["night"]
     },
-    plugins: [require("daisyui")],
+    plugins: [
+            require("@tailwindcss/typography"),
+            require("daisyui"),
+        ]
 }

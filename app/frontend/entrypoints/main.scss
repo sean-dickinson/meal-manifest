@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.pagy-nav,
+.pagy-nav-js {
+  @apply btn-group;
+}
+
+.pagy-nav .page a,
+.pagy-nav .page.active,
+.pagy-nav .page.prev.disabled,
+.pagy-nav .page.next.disabled,
+.pagy-nav-js .page a,
+.pagy-nav-js .page.active,
+.pagy-nav-js .page.prev.disabled,
+.pagy-nav-js .page.next.disabled {
+  @apply btn rounded-none;
+}
+
+.pagy-nav .page.prev,
+.pagy-nav .page.prev.disabled,
+ {
+  @apply rounded-l-lg;
+}
+
+.pagy-nav .page.next,
+.pagy-nav .page.next.disabled {
+  @apply rounded-r-lg;
+}
+
+//.pagy-nav .page.prev.disabled,
+//.pagy-nav .page.next.disabled,
+//.pagy-nav-js .page.prev.disabled,
+//.pagy-nav-js .page.next.disabled {
+//  @apply text-gray-400 cursor-default;
+//  &:hover {
+//    @apply text-gray-400 bg-gray-200;
+//  }
+//  &:active {
+//    @apply text-gray-400 bg-gray-200;
+//  }
+//}
+
+.pagy-nav .page.active,
+.pagy-nav-js .page.active {
+  @apply btn-primary;
+}
+//
+//
+//.pagy-combo-nav-js {
+//  @apply flex max-w-max px-3 py-1 text-sm text-gray-500 font-semibold bg-gray-200 shadow-md;
+//}
+//
+//.pagy-combo-nav-js .pagy-combo-input {
+//  @apply bg-white px-2;
+//}
+//
+//.pagy-combo-nav-js .page.prev,
+//.pagy-combo-nav-js .page.next {
+//  &:hover {
+//    @apply text-gray-800;
+//  }
+//  &:active {
+//    @apply text-gray-800;
+//  }
+//}
+//
+//.pagy-combo-nav-js .page.prev.disabled,
+//.pagy-combo-nav-js .page.next.disabled {
+//  @apply text-gray-400 cursor-default;
+//}
