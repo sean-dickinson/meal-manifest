@@ -1,31 +1,27 @@
-<div id="<%= dom_id meal %>">
-  <p>
-    <strong>Name:</strong>
-    <%= meal.name %>
-  </p>
+<div class="card bg-primary text-primary-content" id="<%= dom_id meal %>">
+  <div class="card-body">
+    <h2 class="card-title"><%= meal.name %></h2>
+    <div class="flex gap-2">
+        <% meal.tag_list.each do |tag| %>
+          <div class="badge">
+            <%= tag %>
+          </div>
+        <% end %>
+    </div>
 
-  <p>
-    <strong>Tags:</strong>
-    <ul>
-      <% meal.tag_list.each do |tag| %>
-        <li>
-          <em> <%= tag %> </em>
-        </li>
-      <% end %>
-    </ul>
-  </p>
- 
-  <p>
-    <strong>Source:</strong>
-    <%= meal.source %>
-  </p>
- 
-  <% if meal.notes.present? %>
-    <details>
-      <summary>Notes:</summary>
-      <%= meal.notes %>
-    </details>
-  <% end %>
+    <p>
+      <strong>Source:</strong>
+      <%= meal.source %>
+    </p>
+
+    <% if meal.notes.present? %>
+      <details>
+        <summary>Notes:</summary>
+        <%= meal.notes %>
+      </details>
+    <% end %>
+  </div>
+
 
 
 
