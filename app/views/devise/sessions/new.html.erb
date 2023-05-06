@@ -15,12 +15,12 @@
     <div class="form-control">
       <%= f.label :remember_me, class: "label cursor-pointer justify-start flex gap-2" do %>
         <span class="label-text">Remember Me</span>
-        <%= f.check_box :remember_me, class: "checkbox checkbox-primary" %>
+        <%= f.check_box :remember_me, class: "checkbox checkbox-primary checkbox-sm" %>
       <% end %>
     </div>
   <% end %>
 
-  <div class="actions my-2">
+  <div class="actions my-4">
     <%= f.submit "Log in", class: "btn btn-primary" %>
   </div>
 <% end %>
