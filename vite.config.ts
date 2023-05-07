@@ -5,8 +5,8 @@ import RubyPlugin from 'vite-plugin-ruby'
 
 export default defineConfig({
   plugins: [
-    FullReload(['config/routes.rb', 'app/views/**/*']),
-    StimulusHMR(),
     RubyPlugin(),
+    FullReload(['config/routes.rb', 'app/views/**/*'], { delay: 250}),
+    StimulusHMR(),
   ],
 })
