@@ -32,7 +32,10 @@
   </div>
 
 
-  <div class="my-4">
+  <div class="flex gap-2 my-4">
     <%= form.submit nil, class: "btn btn-primary" %>
+    <% if meal.persisted? %>
+      <%= button_to "Delete Meal", meal, method: :delete, class: "btn btn-error" %>
+    <% end %>
   </div>
 <% end %>
