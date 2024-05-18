@@ -27,7 +27,13 @@
 
     <p>
       <strong>Source:</strong>
-      <%= meal.source %>
+      <% if meal.source&.start_with? "http" %>
+        <a href="<%= meal.source %>" class="link link-primary" target="_blank" rel="noopener noreferrer">
+          <%= meal.source %>
+        </a>
+      <% else %>
+        <%= meal.source %>
+      <% end %>
     </p>
 
     <% if meal.notes.present? %>
