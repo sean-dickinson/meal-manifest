@@ -2,7 +2,6 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.3.0",
-    "daisyui": "^2.51.6",
     "postcss": "^8.4.23",
     "sass": "^1.62.1",
     "stimulus": "^3.2.1",
@@ -13,6 +12,7 @@
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.9",
+    "daisyui": "^4.11.1",
     "vite": "^4.2.1",
     "vite-plugin-ruby": "^3.2.1"
   }
