@@ -3,7 +3,7 @@
 # Table name: meals
 #
 #  id         :uuid             not null, primary key
-#  name       :string
+#  name       :string           not null
 #  notes      :text
 #  source     :string
 #  created_at :datetime         not null
@@ -21,5 +21,11 @@
 require "rails_helper"
 
 RSpec.describe Meal, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "validations" do
+    it "must have a name" do
+      meal = build(:meal, name: nil)
+      expect(meal).to be_invalid
+      expect(meal.errors).to include :name
+    end
+  end
 end

@@ -3,7 +3,7 @@
 # Table name: meals
 #
 #  id         :uuid             not null, primary key
-#  name       :string
+#  name       :string           not null
 #  notes      :text
 #  source     :string
 #  created_at :datetime         not null
@@ -22,6 +22,9 @@ class Meal < ApplicationRecord
   acts_as_taggable_on :tags
 
   belongs_to :user
+
+  # Validations
+  validates :name, presence: true
 
   class << self
     # @param [String] search_query

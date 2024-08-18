@@ -3,7 +3,7 @@
 # Table name: meals
 #
 #  id         :uuid             not null, primary key
-#  name       :string
+#  name       :string           not null
 #  notes      :text
 #  source     :string
 #  created_at :datetime         not null
