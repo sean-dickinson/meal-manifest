@@ -10,9 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_09_235705) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_06_185627) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "grocery_lists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_grocery_lists_on_user_id"
+  end
+
+  create_table "item_categories", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_item_categories_on_user_id"
+  end
+
+  create_table "list_items", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.integer "quantity"
+    t.uuid "grocery_list_id", null: false
+    t.uuid "item_category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["grocery_list_id"], name: "index_list_items_on_grocery_list_id"
+    t.index ["item_category_id"], name: "index_list_items_on_item_category_id"
+  end
 
   create_table "meals", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -67,6 +95,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_09_235705) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "grocery_lists", "users"
+  add_foreign_key "item_categories", "users"
+  add_foreign_key "list_items", "grocery_lists"
+  add_foreign_key "list_items", "item_categories"
   add_foreign_key "meals", "users"
   add_foreign_key "taggings", "tags"
 end
