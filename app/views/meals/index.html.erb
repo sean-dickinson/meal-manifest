@@ -1,9 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>My Meals</h1>
-
 <%= form_with(url: meals_path, method: :get, data: { turbo_frame: :index, controller: 'debounced-search' }) do |f| %>
-  <div class="input input-bordered flex items-center gap-2">
+  <div class="input input-bordered flex items-center gap-2 w-full max-w-3xl mx-auto">
     <%= f.text_field(:query,
                      value: @query,
                      class: "grow",
@@ -26,6 +24,7 @@
 <% end %>
 
 <%= turbo_frame_tag :index do %>
+  <section class="max-w-3xl mx-auto pt-2">
   <% if @meals.empty? %>
     <% if @query.present? %>
       <p>No meals found matching your search for "<%= @query %>"</p>
@@ -33,7 +32,7 @@
       <p>No meals yet. <%= link_to "Create one to start!", new_meal_path, class: "btn btn-primary" %></p>
     <% end %>
   <% else %>
-    <table class="table">
+    <table class="table table-zebra">
       <thead>
       <tr>
         <th>Name</th>
@@ -85,5 +84,6 @@
   <div class="flex justify-center">
     <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
   </div>
+  </section>
 <% end %>
 
