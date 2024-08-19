@@ -31,8 +31,11 @@
             </div>
           <% end %>
         </nav>
-        <main class="container pb-6">
+        <main class="container max-w-4xl mx-auto">
           <%= yield %>
+          <div id="flash">
+            <%= render partial: 'partials/flash' %>
+          </div>
         </main>
     </body>
 </html>
