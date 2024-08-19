@@ -31,13 +31,19 @@ class Meal < ApplicationRecord
     # @return [ActiveRecord::Relation<Meal>]
     def search(search_query = "")
       if search_query.blank?
-        Meal.all
+        base_relation
       else
         matched_tag_ids = Meal.tagged_with(search_query).pluck(:"meals.id")
-        Meal.where("name ILIKE ?", "%#{search_query}%")
-          .or(Meal.where(id: matched_tag_ids))
+        base_relation.where("name ILIKE ?", "%#{search_query}%")
+          .or(base_relation.where(id: matched_tag_ids))
           .distinct
       end
+    end
+
+    private
+
+    def base_relation
+      Meal.all.order(created_at: :desc).includes(:tags)
     end
   end
 end
