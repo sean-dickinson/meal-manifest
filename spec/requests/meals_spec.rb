@@ -29,6 +29,55 @@ RSpec.describe "Meals", type: :request do
     end
   end
 
+  describe "POST /meals" do
+    it "creates a new meal and redirects to the index" do
+      user = create(:user)
+      sign_in user
+
+      expect {
+        post meals_path, params: {meal: {
+          name: Faker::Food.dish,
+          source: Faker::Internet.url
+        }}
+      }.to change(Meal, :count).by(1)
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(meals_path)
+    end
+  end
+
+  describe "GET /meals/:id/edit" do
+    it "renders the edit form" do
+      user = create(:user)
+      sign_in user
+
+      meal = create(:meal, user:)
+
+      get edit_meal_path(meal)
+
+      expect(response).to have_http_status(200)
+      expect(response.body).to include(meal.name)
+    end
+  end
+
+  describe "PATCH /meals/:id" do
+    it "updates the meal and redirects to the index" do
+      user = create(:user)
+      sign_in user
+
+      meal = create(:meal, user:)
+
+      expect {
+        patch meal_path(meal), params: {meal: {
+          name: "New Name"
+        }}
+      }.to change { meal.reload.name }.to("New Name")
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(meals_path)
+    end
+  end
+
   describe "DELETE /meals/:id" do
     it "deletes the meal and redirects to the index" do
       user = create(:user)
