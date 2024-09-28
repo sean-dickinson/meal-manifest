@@ -54,6 +54,7 @@ RSpec.configure do |config|
   #     end
   config.include Devise::Test::IntegrationHelpers, type: :request
   config.include ActionView::RecordIdentifier, type: :request
+  config.include Turbo::TestAssertions, type: :request
   # The different available types are documented in the features, such as in
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
