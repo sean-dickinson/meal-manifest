@@ -40,7 +40,7 @@
         </thead>
         <tbody>
         <% @meals.each do |meal| %>
-          <tr>
+          <tr id="<%= dom_id meal %>">
             <td><%= meal.name %></td>
             <td>
               <% if meal.source&.start_with? "http" %>
