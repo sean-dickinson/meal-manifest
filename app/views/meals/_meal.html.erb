@@ -11,14 +11,6 @@
     <h3 class="card-title">
       <%= meal.name %>
     </h3>
-    <div class="flex gap-2 py-2">
-      <% badge_classes = %w[badge-primary badge-secondary badge-accent] %>
-      <% meal.tag_list.each_with_index do |tag, i| %>
-        <div class="badge <%= badge_classes[i % badge_classes.size] %>">
-          <%= tag %>
-        </div>
-      <% end %>
-    </div>
 
     <p>
       <strong>Source:</strong>

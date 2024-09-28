@@ -19,8 +19,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class Meal < ApplicationRecord
-  acts_as_taggable_on :tags
-
   belongs_to :user
 
   # Validations
@@ -33,17 +31,14 @@ class Meal < ApplicationRecord
       if search_query.blank?
         base_relation
       else
-        matched_tag_ids = Meal.tagged_with(search_query).pluck(:"meals.id")
-        base_relation.where("name ILIKE ?", "%#{search_query}%")
-          .or(base_relation.where(id: matched_tag_ids))
-          .distinct
+        base_relation.where("name ILIKE ?", "%#{search_query}%").distinct
       end
     end
 
     private
 
     def base_relation
-      Meal.all.order(created_at: :desc).includes(:tags)
+      Meal.all.order(created_at: :desc)
     end
   end
 end
