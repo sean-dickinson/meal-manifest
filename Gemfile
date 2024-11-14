@@ -50,6 +50,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "annotate"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -60,7 +61,6 @@ end
 
 gem "paranoia"
 gem "devise"
-gem "acts-as-taggable-on", "~> 9.0"
 gem "vite_rails"
 gem "pagy"
 
